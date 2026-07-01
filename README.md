@@ -26,9 +26,13 @@ HTTP API server  (http_server/app.py, Flask, GET endpoints)
 
 ## Setup
 
+> **Note:** a Windows `.venv/` is committed to this repo for convenience. It
+> contains hardcoded paths to `C:\Users\400861\...` and Windows-only binaries,
+> so it will **not** work on macOS/Linux or other machines. On any other setup,
+> delete `.venv/` and rebuild it with the steps below.
+
 Create a project-local virtual environment and install the pinned deps.
-The `.venv/` folder is git-ignored — ship the code + `requirements.txt`, and
-each machine builds its own venv.
+Each machine should build its own venv from `requirements.txt`.
 
 **Windows (PowerShell):**
 
