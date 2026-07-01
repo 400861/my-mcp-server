@@ -26,22 +26,45 @@ HTTP API server  (http_server/app.py, Flask, GET endpoints)
 
 ## Setup
 
+Create a project-local virtual environment and install the pinned deps.
+The `.venv/` folder is git-ignored — ship the code + `requirements.txt`, and
+each machine builds its own venv.
+
+**Windows (PowerShell):**
+
 ```powershell
-python -m pip install -r requirements.txt
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
+**macOS / Linux (bash/zsh):**
+
+```bash
+python3 -m venv .venv
+./.venv/bin/python -m pip install --upgrade pip
+./.venv/bin/python -m pip install -r requirements.txt
+```
+
+> The direct-path form above works without "activating" the venv. If you prefer
+> to activate it: `.\.venv\Scripts\Activate.ps1` (Windows) or
+> `source .venv/bin/activate` (macOS/Linux), after which plain `python` uses the venv.
+
 ## Run (two terminals)
+
+Use the venv's Python. Windows examples use `.\.venv\Scripts\python.exe`;
+on macOS/Linux swap in `./.venv/bin/python`.
 
 Terminal 1 — the HTTP API (port 8000):
 
 ```powershell
-python http_server/app.py
+.\.venv\Scripts\python.exe http_server/app.py
 ```
 
 Terminal 2 — the MCP server (port 9100):
 
 ```powershell
-python mcp_server/server.py
+.\.venv\Scripts\python.exe mcp_server/server.py
 ```
 
 > Port 9100 is used because 9000 is occupied by Zscaler (ZSATunnel) on this
@@ -53,7 +76,7 @@ python mcp_server/server.py
 With both servers running:
 
 ```powershell
-python mcp_server/test_client.py
+.\.venv\Scripts\python.exe mcp_server/test_client.py
 ```
 
 Expected: it lists the tools (`list_books`, `get_book`, `list_genres`,
